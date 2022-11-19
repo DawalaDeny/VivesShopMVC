@@ -23,6 +23,11 @@ namespace VivesShopMVC.Controllers
         {
             return View();
         }
+        public IActionResult ToevoegenCart()
+        {
+
+            return View("Index", _database);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
