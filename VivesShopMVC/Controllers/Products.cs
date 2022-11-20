@@ -50,6 +50,26 @@ namespace VivesShopMVC.Controllers
             return View(prod);
         }
 
+        [HttpPost] public IActionResult Edit(int id, Product p)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(p);
+            }
+
+            var prod = _database.Products
+                .SingleOrDefault(o => o.Id == id);
+            
+            if (prod is null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            prod.Name = p.Name;
+            prod.Prijs = p.Prijs;
+
+            return RedirectToAction("Index");
+        }
         public IActionResult Delete()
         {
             return RedirectToAction("Index");
