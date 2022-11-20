@@ -4,7 +4,9 @@
     <td>@Model.Name</td>
     <td>@Model.Prijs</td>
     <td>
-        <a class="btn btn-success" asp-action="Edit">Edit</a>
-        <a class="btn btn-success" asp-action="Delete">Delete</a>
+        <div class="text-lg-end">
+        <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.Id">Aanpassen</a>
+        <a class="btn btn-danger" asp-action="Delete">Verwijderen</a>
+        </div>
     </td>
 </tr>
