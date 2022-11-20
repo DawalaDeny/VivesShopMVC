@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Text;
 using VivesShopMVC.Data;
 using VivesShopMVC.Models;
 
@@ -72,30 +70,9 @@ namespace VivesShopMVC.Controllers
 
             return RedirectToAction("Index");
         }
-        [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete()
         {
-            var prod = _database.Products.SingleOrDefault(o => o.Id == id);
-
-            if (prod is null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            return View(prod);
-        }
-        [HttpPost("[controller]/Delete/{id:int?}")]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            var prod = _database.Products.SingleOrDefault(o => o.Id == id);
-            
-            if (prod is null)
-            {
-                return RedirectToAction("Index");
-            }
-            _database.Products.Remove(prod);
             return RedirectToAction("Index");
         }
     }
 }
-
