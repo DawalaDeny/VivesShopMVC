@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Diagnostics;
+using VivesShopMVC.Controllers;
 using VivesShopMVC.Data;
 using VivesShopMVC.Models;
 
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<ShopItemsDb>();
+builder.Services.AddSingleton<BigViewModel>();
 
 var app = builder.Build();
 
@@ -20,8 +21,11 @@ if (!app.Environment.IsDevelopment())
 }
 else
 {
-    var database = app.Services.GetRequiredService<ShopItemsDb>();
-    database.Seed();
+    var database = app.Services.GetRequiredService<BigViewModel>();
+    database.ItemsDataBase = new ShopItemsDb();
+    database.Cart = new Cart();
+    database.ItemsDataBase.Seed();
+    database.Cart.initialize();
 }
 
 app.UseHttpsRedirection();

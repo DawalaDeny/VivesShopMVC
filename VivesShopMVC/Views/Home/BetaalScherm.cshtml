@@ -1,0 +1,41 @@
+﻿@model IList<Product>
+
+    
+<h1>Bestelling:</h1>
+
+
+<div>
+
+
+    @foreach (var product in Model)
+    {
+        <partial name="BestellingPartial" model="product"/>
+        
+
+    }
+    
+    <div class=" row">
+
+        <div class=" col-4 betaling">
+            
+            <a asp-action="betaald"><button class="accordion-button">Mastercard</button></a>
+            
+            
+
+        </div>
+
+        <div class=" col-4 betaling">
+
+            <a asp-action="betaald"><button class="accordion-button">Bancontact</button></a>
+
+        </div>
+
+        <div class=" col-4 betaling">
+            
+            <a asp-action="betaald"><button class="accordion-button">Crypto</button></a>
+
+        </div>
+
+    </div>
+    
+    </div>

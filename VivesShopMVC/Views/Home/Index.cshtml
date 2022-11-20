@@ -1,18 +1,23 @@
-﻿@model VivesShopMVC.Data.ShopItemsDb
+﻿@model BigViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 <div class="row">
     <div class="col-6">
         <h1>Shop Items</h1>
-        @foreach (var product in Model.Products)
+        @foreach (var product in Model.ItemsDataBase.Products)
         {
             <partial name="ProductsIndexPartial" model="product"/>
         }
     </div>
     <div class="col-6">
         <h1>Shopping cart</h1>
-        <h1>Totaal: </h1>
-        <a asp-action="checkout"><input type="button" value="Checkout" class="btn-primary"/></a>
+        @foreach (var productCart in Model.Cart.products)
+        {
+            <partial name="CartPartial" model="productCart"/>
+        }
+
+        <h1>Totaal: € @Model.Cart.TotalUnit()</h1>
+        <a asp-action="Checkout"><input type="button" value="Checkout" class="btn-primary"/></a>
     </div>
 </div>

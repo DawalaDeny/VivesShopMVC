@@ -16,3 +16,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.betaling {
+    width: 180px;
+    height: 100px;
+    
+}
+
+
+button {
+    margin-top: 10px;
+    overflow: hidden;
+}
+

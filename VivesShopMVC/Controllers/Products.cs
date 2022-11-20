@@ -8,15 +8,15 @@ namespace VivesShopMVC.Controllers
 {
     public class Products : Controller
     {
-        private readonly ShopItemsDb _database;
+        private readonly BigViewModel _database;
 
-        public Products(ShopItemsDb database)
+        public Products(BigViewModel database)
         {
             _database = database;
         }
         public IActionResult Index()
         {
-            var products = _database.Products;
+            var products = _database.ItemsDataBase.Products;
             return View(products);
         }
         [HttpGet]
@@ -28,14 +28,14 @@ namespace VivesShopMVC.Controllers
         [HttpPost]
         public IActionResult Create(Product prod)
         {
-            var maxId = _database.Products.Max(x => x.Id);
+            var maxId = _database.ItemsDataBase.Products.Max(x => x.Id);
             var id = maxId + 1;
             prod.Id = id;
             String naam = prod.Name;
             double prijs = prod.Prijs;
             if (!String.IsNullOrEmpty(naam) && prijs>0)
             {
-                _database.Products.Add(prod);
+                _database.ItemsDataBase.Products.Add(prod);
             }
             
             return RedirectToAction("Index");
@@ -43,7 +43,7 @@ namespace VivesShopMVC.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var prod= _database.Products.SingleOrDefault(o => o.Id == id);
+            var prod= _database.ItemsDataBase.Products.SingleOrDefault(o => o.Id == id);
             
             if (prod is null)
             {
@@ -59,7 +59,7 @@ namespace VivesShopMVC.Controllers
                 return View(p);
             }
 
-            var prod = _database.Products
+            var prod = _database.ItemsDataBase.Products
                 .SingleOrDefault(o => o.Id == id);
             
             if (prod is null)
@@ -75,7 +75,7 @@ namespace VivesShopMVC.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var prod = _database.Products.SingleOrDefault(o => o.Id == id);
+            var prod = _database.ItemsDataBase.Products.SingleOrDefault(o => o.Id == id);
 
             if (prod is null)
             {
@@ -87,13 +87,13 @@ namespace VivesShopMVC.Controllers
         [HttpPost("[controller]/Delete/{id:int?}")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var prod = _database.Products.SingleOrDefault(o => o.Id == id);
+            var prod = _database.ItemsDataBase.Products.SingleOrDefault(o => o.Id == id);
             
             if (prod is null)
             {
                 return RedirectToAction("Index");
             }
-            _database.Products.Remove(prod);
+            _database.ItemsDataBase.Products.Remove(prod);
             return RedirectToAction("Index");
         }
     }
