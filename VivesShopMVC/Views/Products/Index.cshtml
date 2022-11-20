@@ -3,4 +3,23 @@
 *@
 @{
 }
-<p>hello</p>
+@model IList<Product>
+
+<h1>Producten</h1>
+
+<a asp-action="Create" class="btn btn-primary">Toevoegen item</a>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Naam</th>
+        <th>Prijs</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var product in Model)
+    {
+        <partial name="ManagePartial" model="product"/>
+    }
+    </tbody>
+</table>

@@ -25,7 +25,6 @@ namespace VivesShopMVC.Controllers
         }
         public IActionResult ToevoegenCart()
         {
-
             return View("Index", _database);
         }
 

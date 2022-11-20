@@ -1,4 +1,5 @@
-﻿using VivesShopMVC.Models;
+﻿using VivesShopMVC.Controllers;
+using VivesShopMVC.Models;
 
 namespace VivesShopMVC.Data
 {
@@ -6,7 +7,6 @@ namespace VivesShopMVC.Data
     public class ShopItemsDb
     {
         public IList<Product> Products { get; set; } = new List<Product>();
-        
         public void Seed()
         {
             Products = new List<Product>
