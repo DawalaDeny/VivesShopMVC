@@ -1,0 +1,17 @@
+﻿@model Product
+
+@{
+    ViewBag.Title = "Delete Organization";
+}
+
+<h1>Verwijderen Product</h1>
+<p>Bent u zeker dat u het product wilt verwijder &quot;@Model.Name&quot;</p>
+
+<form method="post">
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fa fa-arrow-left"></i> No
+    </a>
+    <button type="submit" class="btn btn-danger">
+        <i class="fa fa-trash"></i> Yes
+    </button>
+</form>
